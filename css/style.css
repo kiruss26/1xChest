@@ -4,7 +4,7 @@
     font-style: normal;
     font-weight: 400;
     src: local('a_BremenCaps-Regular'),
-	url(../fonts/A_BREMENCAPS_REGULAR.ttf) format('truetype');
+	url(../fonts/bremen.ttf) format('truetype');
 }
 
 body {
