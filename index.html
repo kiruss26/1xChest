@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>1xChest</title>
+	<meta charset="UTF-8" name="viewport">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<div id="gameCont" data-game="0">
+		<canvas id="flame" width="450" height="550"></canvas> 
+		<div id="frames"></div>
+		<div class="gameCenter">
+			<div class="gameMain">
+				<div id="logo"></div>
+				<div id="gnom">
+					<div class="anim1"></div>
+                    <div class="anim2"></div>
+                    <div class="anim3"></div>
+                    <div class="anim4"></div>
+				</div>
+				<div class="chests">
+                    <div class="slot">
+                        <div class="blink"></div>
+                        <div class="chest"></div>   
+                    </div>
+					<div class="slot">
+                        <div class="blink"></div>
+                        <div class="chest"></div>   
+                    </div>
+					<div class="slot">
+                        <div class="blink"></div>
+                        <div class="chest"></div>   
+                    </div>
+					<div class="slot">
+                        <div class="blink"></div>
+                        <div class="chest"></div>   
+                    </div>
+					<div class="slot">
+                        <div class="blink"></div>
+                        <div class="chest"></div>   
+                    </div>
+					<div class="slot">
+                        <div class="blink"></div>
+                        <div class="chest"></div>   
+                    </div>
+					<div class="slot">
+                        <div class="blink"></div>
+                        <div class="chest"></div>   
+                    </div>
+					<div class="slot">
+                        <div class="blink"></div>
+                        <div class="chest"></div>   
+                    </div>
+					<div class="slot">
+                        <div class="blink"></div>
+                        <div class="chest"></div>   
+                    </div>
+                    
+                </div>
+				<span class="chests-tooltip">Для игры Вам необходимо <a href="#">авторизоваться</a> и иметь в наличии сумму для осуществления попыток.</span>
+			</div>
+			
+			<div class="infoContainer">
+                    <span id="infoBox">Вскрывай сундуки из моей сокровищницы! Ищи несметные бонусы дня!</span>
+            </div>
+			<div class="startContainer">
+                <div id="startGame" class="infoStart">Играть</div>
+            </div>
+			<div class="gameSide">
+				<div class="settingsContainer">
+					<div class="settingsBlock">
+						<div class="settingsTitle"><img src="img/title.png" alt=""></div>
+						<div class="settingsName">Текущий выигрыш</div>
+							<div class="line">
+                            <div class="left">Бонусных баллов:</div>
+                            <div class="right"><span class="numb" id="balance">1764</span></div>
+                        </div>
+						<div class="settingsName">Вам доступно</div>
+							<div class="line">
+                            <div class="left">Игр:</div>
+                            <div class="right"><span class="numb" id="tokens">0</span></div>
+                        </div>
+						<div class="settingsName">Покупка:</div>
+							<div class="line">
+								<div class="left">Игр:</div>
+								<div class="right"><input type="text" class="spinn" value="0" placeholder="0" maxlength="6"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="sellQuantity" /></div>
+							</div>
+							<div class="line">
+								<div class="left">Cумма:</div>
+								<div class="right"><span class="numb" id="rub">0</span><span class="rub-sign">&#8381;<span/></div>
+							</div>
+							<a href="#" class="buyBut" id="buy_button">Купить</a>
+							<span class="price-tooltip">1 игра = 50 руб.</span>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+<div id="win-message">
+Поздравляем! Ты выиграл 1000 бонусных баллов!
+</div>
+<div id="lose-message">
+Не повезло! Попробуй еще раз.
+</div>
+<div id="no-money-message">
+Суммы на счете не досточно для покупки
+</div>
+	
+</body>
+</html>
