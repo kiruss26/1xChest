@@ -15,72 +15,14 @@
 		
 		var startButton = document.getElementById("startGame");
 		
-		var chestArray = [1,0,0,
-		                  0,0,1,
-						  0,1,0];
+		var chestArray = [0,0,0,
+		                  0,0,0,
+						  0,0,0];
 		var chestsOpened = [];	
 		
 		var slotsBlink = $(".slot .blink");
 		
-		for (i=0; i < chestArray.length; i++ ){
-			var chest = document.getElementsByClassName("chest")[i];
-			var state = chestArray[i];
-			var chestData = chest.dataset;
-				if (state){
-					chest.style.background = "url(./img/anim-gold.png) no-repeat";
-				} else{
-					chest.style.background = "url(./img/anim-empty.png) no-repeat";
-				}
-			chestData.treusure = chestArray[i];
-			chestData.id = i;
-			chest.onclick = function(){
-				var data = gameContainer.dataset;
-				if(data.game == "1"){
-					this.style.animation = "chest 0.2s steps(2) forwards";
-					var treusure = this.getAttribute('data-treusure');
-					var id = this.getAttribute('data-id');
-					if(treusure == 1){
-						if (chestsOpened.indexOf(id) == -1){
-						chestsOpened.push(id);
-						}
-						if (chestsOpened.length == 3){ 
-							for (i=0; i < chestArray.length; i++ ){
-								var timing = 140;
-								$(".slot .blink").eq(chestsOpened[i]).animate({ opacity: "1"}, timing).animate({ opacity: "0"}, timing).animate({ opacity: "1"}, timing).animate({ opacity: "0"}, timing).animate({ opacity: "1"}, timing).animate({ opacity: "0"}, timing);
-							}
-						setTimeout(function(){ $( function() {
-									$( "#win-message" ).dialog({
-									  modal: true,
-									  draggable: false,
-									  resizable: false,
-									  buttons: {
-										ok: function() {
-										  $( this ).dialog( "close" );
-										}
-									  }
-									});
-								  } );
-							var newBalance = Number(balance.innerHTML) + 1000;
-							balance.innerHTML = newBalance;
-							refreshGame();
-						}, 800); } 
-					} else {
-						setTimeout(function(){ $( function() {
-									$( "#lose-message" ).dialog({
-									  modal: true,
-									  draggable: false,
-									  resizable: false,
-									  buttons: {
-										ok: function() {
-										  $( this ).dialog( "close" );
-										}
-									  }
-									});
-								  } ); refreshGame(); }, 500);
-					}	
-				}
-			};
-		}
+		randomiseChestsArray();
 		
 		
 		slotsBlink.next().on('click', function() {
@@ -153,12 +95,99 @@
 		}
 	chestsOpened = [];
 		startButtonChangeState();
+		randomiseChestsArray();
 	}
 	
 	
 	function animateAllChests(){
 		var timing = 150;
 		$(".slot .blink").animate({ opacity: "1"}, timing).animate({ opacity: "0"}, timing);
+	}
+
+	function randomiseChestsArray(){
+
+		for (i=0; i < chestArray.length; i++ ){
+			chestArray[i] = 0;
+		}
+
+
+		var limit = 3,
+		    amount = 3,
+		    lower_bound = 0,
+		    upper_bound = 8,
+		    unique_random_numbers = [];
+
+		if (amount > limit) limit = amount; 
+		
+		while (unique_random_numbers.length < limit) {
+		    var random_number = Math.round(Math.random() * (upper_bound - lower_bound) + lower_bound);
+		    if (unique_random_numbers.indexOf(random_number) == -1) {
+		        unique_random_numbers.push(random_number);
+		    }
+		}
+		for (var i = 0; i<unique_random_numbers.length; i++) {
+			chestArray[unique_random_numbers[i]] = 1;	
+		}
+				for (i=0; i < chestArray.length; i++ ){
+			var chest = document.getElementsByClassName("chest")[i];
+			var state = chestArray[i];
+			var chestData = chest.dataset;
+				if (state){
+					chest.style.background = "url(./img/anim-gold.png) no-repeat";
+				} else{
+					chest.style.background = "url(./img/anim-empty.png) no-repeat";
+				}
+			chestData.treusure = chestArray[i];
+			chestData.id = i;
+			chest.onclick = function(){
+				var data = gameContainer.dataset;
+				if(data.game == "1"){
+					this.style.animation = "chest 0.2s steps(2) forwards";
+					var treusure = this.getAttribute('data-treusure');
+					var id = this.getAttribute('data-id');
+					if(treusure == 1){
+						if (chestsOpened.indexOf(id) == -1){
+						chestsOpened.push(id);
+						}
+						if (chestsOpened.length == 3){ 
+							for (i=0; i < chestArray.length; i++ ){
+								var timing = 140;
+								$(".slot .blink").eq(chestsOpened[i]).animate({ opacity: "1"}, timing).animate({ opacity: "0"}, timing).animate({ opacity: "1"}, timing).animate({ opacity: "0"}, timing).animate({ opacity: "1"}, timing).animate({ opacity: "0"}, timing);
+							}
+						setTimeout(function(){ $( function() {
+									$( "#win-message" ).dialog({
+									  modal: true,
+									  draggable: false,
+									  resizable: false,
+									  buttons: {
+										ok: function() {
+										  $( this ).dialog( "close" );
+										}
+									  }
+									});
+								  } );
+							var newBalance = Number(balance.innerHTML) + 1000;
+							balance.innerHTML = newBalance;
+							refreshGame();
+						}, 800); } 
+					} else {
+						setTimeout(function(){ $( function() {
+									$( "#lose-message" ).dialog({
+									  modal: true,
+									  draggable: false,
+									  resizable: false,
+									  buttons: {
+										ok: function() {
+										  $( this ).dialog( "close" );
+										}
+									  }
+									});
+								  } ); refreshGame(); }, 500);
+					}	
+				}
+			};
+		}
+		console.log(chestArray);
 	}
 		
 		/* Canvas */
